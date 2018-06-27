@@ -1,0 +1,22 @@
+version: '3'
+services:
+  act-track-app:
+    container_name: act-track-app
+    build:
+      context: ./App
+    image: fernando-conde:act-track-app
+    #ports:
+    # - "9030:9000"
+    volumes:
+     - ../Source:/var/www/html
+  act-track-web:
+    container_name: act-track-web
+    build:
+      context: ./Web
+    image: fernando-conde:act-track-web
+    ports:
+     - "8016:80"
+    volumes:
+     - ../Source:/usr/share/nginx/html
+    links:
+     - act-track-app
